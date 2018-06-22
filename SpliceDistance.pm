@@ -67,16 +67,10 @@ sub run {
     my $tv = $tva->transcript_variation;
     my $vf = $tva->variation_feature;
     my $strand;
-    my $intron_donor = 'start';
-    my $intron_acc = 'end';
-    my $exon_donor = 'end';
-    my $exon_acc = 'start';
-    if ($tr->strand < 0){
-        $intron_donor = 'end';
-        $intron_acc = 'start';
-        $exon_donor = 'start';
-        $exon_acc = 'end';
-    }
+    my $intron_donor = $tr->strand > 0 ? 'start' : 'end';
+    my $intron_acc = $tr->strand > 0 ? 'end' : 'start';
+    my $exon_donor = $tr->strand > 0 ? 'end' : 'start';
+    my $exon_acc = $tr->strand > 0 ? 'start' : 'end';
     my ($vf_start, $vf_end) = sort {$a <=> $b} ($vf->start, $vf->end);
     my @introns = @{$tv->_overlapped_introns($vf_start, $vf_end)};
     my @exons = @{$tv->_overlapped_exons($vf_start, $vf_end)};
