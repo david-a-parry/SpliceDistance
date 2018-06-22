@@ -93,7 +93,7 @@ sub run {
             $start = "acceptor+$a_start";
         }
         if ($d_end != $d_start){
-            if ($d_end < $a_end){
+            if (($d_end < $a_end and not $last) or $rank == 1){
                 $end = "donor-$d_end";
             }else{
                 $end = "acceptor+$a_end";
