@@ -66,7 +66,6 @@ sub run {
     }
     my $tv = $tva->transcript_variation;
     my $vf = $tva->variation_feature;
-    my $strand;
     my $intron_donor = $tr->strand > 0 ? 'start' : 'end';
     my $intron_acc = $tr->strand > 0 ? 'end' : 'start';
     my $exon_donor = $tr->strand > 0 ? 'end' : 'start';
