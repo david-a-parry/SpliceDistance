@@ -61,7 +61,7 @@ sub get_header_info {
 sub run {
     my ($self, $tva) = @_;
     my $tr = $tva->transcript;
-    if ($tr->end_Exon() == 1){ #no introns
+    if ($tr->end_Exon()->rank($tr) == 1){ #no introns
         return {};
     }
     my $tv = $tva->transcript_variation;
@@ -82,7 +82,7 @@ sub run {
     my $end;
     if (@exons){
         my $rank = $exons[0]->rank($tr);
-        my $last = $tr->end_Exon() == $rank;
+        my $last = $tr->end_Exon()->rank($tr) == $rank;
         my $a_start = abs($vf_start - $exons[0]->{$exon_acc}) + 1;
         my $a_end = abs($vf_end - $exons[0]->{$exon_acc}) + 1;
         my $d_start = abs($exons[0]->{$exon_donor} - $vf_start) + 1;
