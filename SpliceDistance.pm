@@ -94,13 +94,13 @@ sub run {
         my $d_start = abs($exons[0]->{$exon_donor} - $vf_start);
         my $d_end = abs($exons[0]->{$exon_donor} - $vf_end);
         if (($d_start < $a_start and not $last) or $rank == 1){
-            $start = "donor-$d_start";
+            $start = $d_start ? "donor-$d_start" : "donor+$d_start";
         }else{
             $start = "acceptor+$a_start";
         }
         if ($d_end != $d_start){
             if (($d_end < $a_end and not $last) or $rank == 1){
-                $end = "donor-$d_end";
+                $end = $d_end ? "donor-$d_end" : "donor+$d_end";
             }else{
                 $end = "acceptor+$a_end";
             }
