@@ -44,6 +44,9 @@ SOFTWARE.
  spanning more than one nucleotide the first and last altered/deleted
  nucleotides are reported.
 
+ Note that the acceptor and donor nucleotides (first and last nucleotides of an
+ exon) are labelled acceptor+0 and donor+0 respectively.
+
 =cut
 
 package SpliceDistance;
