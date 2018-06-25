@@ -38,8 +38,11 @@ SOFTWARE.
 =head1 DESCRIPTION
 
  A VEP plugin that adds an annotation field indicating distance from the
- nearest splice site. If a variant overlaps multiple exons or introns no
- or if a transcript has no introns no annotation is added.
+ nearest splice site. No annotation is added if a variant overlaps multiple
+ exons or introns or if a transcript has no introns. For insertions the
+ coordinate before and after the insertion are reported. For MNPs or deletions
+ spanning more than one nucleotide the first and last altered/deleted
+ nucleotides are reported.
 
 =cut
 
