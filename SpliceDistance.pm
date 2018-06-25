@@ -75,6 +75,7 @@ sub run {
     my $exon_acc = $tr->strand > 0 ? 'start' : 'end';
     my ($vf_start, $vf_end) = sort {$a <=> $b} ($vf->start, $vf->end);
     my @introns = @{$tv->_overlapped_introns($vf_start, $vf_end)};
+    #note splice_region_variants return 'overlapping' introns even if exonic
     my @exons = @{$tv->_overlapped_exons($vf_start, $vf_end)};
     if (@introns > 1 or @exons > 1){
         #if overlap more than one intron or exon do nothing -
@@ -83,6 +84,8 @@ sub run {
     }
     my $start;
     my $end;
+    #will only have exons if variant is exonic, but note that exonic
+    #splice_region_variants will also return an intron, so check for exon first
     if (@exons){
         my $rank = $exons[0]->rank($tr);
         my $last = $tr->end_Exon()->rank($tr) == $rank;
