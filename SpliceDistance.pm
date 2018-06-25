@@ -89,10 +89,10 @@ sub run {
     if (@exons){
         my $rank = $exons[0]->rank($tr);
         my $last = $tr->end_Exon()->rank($tr) == $rank;
-        my $a_start = abs($vf_start - $exons[0]->{$exon_acc}) + 1;
-        my $a_end = abs($vf_end - $exons[0]->{$exon_acc}) + 1;
-        my $d_start = abs($exons[0]->{$exon_donor} - $vf_start) + 1;
-        my $d_end = abs($exons[0]->{$exon_donor} - $vf_end) + 1;
+        my $a_start = abs($vf_start - $exons[0]->{$exon_acc});
+        my $a_end = abs($vf_end - $exons[0]->{$exon_acc});
+        my $d_start = abs($exons[0]->{$exon_donor} - $vf_start);
+        my $d_end = abs($exons[0]->{$exon_donor} - $vf_end);
         if (($d_start < $a_start and not $last) or $rank == 1){
             $start = "donor-$d_start";
         }else{
